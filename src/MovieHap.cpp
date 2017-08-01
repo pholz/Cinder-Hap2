@@ -207,6 +207,7 @@ namespace cinder { namespace qtime {
 		if( ::CFGetTypeID( cvImage ) == ::CVPixelBufferGetTypeID() ) {
 			GLuint width = ::CVPixelBufferGetWidth( cvImage );
 			GLuint height = ::CVPixelBufferGetHeight( cvImage );
+
 			
 			CI_ASSERT( cvImage != NULL );
 			
@@ -215,6 +216,10 @@ namespace cinder { namespace qtime {
 			::CVPixelBufferGetExtendedPixels( cvImage, NULL, &extraRight, NULL, &extraBottom );
 			GLuint roundedWidth = width + extraRight;
 			GLuint roundedHeight = height + extraBottom;
+			ww = float(roundedWidth);
+			hh = float(roundedHeight);
+			
+
 			
 			// Valid DXT will be a multiple of 4 wide and high
 			CI_ASSERT( !(roundedWidth % 4 != 0 || roundedHeight % 4 != 0) );
@@ -259,6 +264,7 @@ namespace cinder { namespace qtime {
 				gl::Texture2d::Format format;
 				format.wrap( GL_CLAMP_TO_EDGE ).magFilter( GL_LINEAR ).minFilter( GL_LINEAR ).internalFormat( internalFormat ).dataType( GL_UNSIGNED_INT_8_8_8_8_REV ).immutableStorage();// .pixelDataFormat( GL_BGRA );
 				mTexture = gl::Texture2d::create( backingWidth, backingHeight, format );
+
 //				mTexture->setsetCleanSize( width, height );
 				
 				CI_LOG_I( "Created texture." );
