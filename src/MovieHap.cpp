@@ -83,6 +83,8 @@ namespace cinder { namespace qtime {
 	MovieGlHap::Obj::Obj()
 	: MovieBase::Obj()
 	, mDefaultShader( gl::getStockShader( gl::ShaderDef().texture() ) )
+    , contentWidth(0.0f)
+    , contentHeight(0.0f)
 	{
 		std::call_once( mHapQOnceFlag, []() {
 			MovieGlHap::Obj::sHapQShader = gl::GlslProg::create( 
@@ -216,8 +218,8 @@ namespace cinder { namespace qtime {
 			::CVPixelBufferGetExtendedPixels( cvImage, NULL, &extraRight, NULL, &extraBottom );
 			GLuint roundedWidth = width + extraRight;
 			GLuint roundedHeight = height + extraBottom;
-			ww = float(roundedWidth);
-			hh = float(roundedHeight);
+			contentWidth = float(roundedWidth);
+			contentHeight = float(roundedHeight);
 			
 
 			

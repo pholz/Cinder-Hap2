@@ -50,8 +50,8 @@ namespace cinder { namespace qtime {
 		static MovieGlHapRef create( DataSourceRef dataSource, const std::string mimeTypeHint = "" )
 		{ return MovieGlHapRef( new MovieGlHap( dataSource, mimeTypeHint ) ); }
 
-		float ww() { return mObj->ww; };
-		float hh() { return mObj->hh; };
+		float contentWidth() { return mObj->contentWidth; };
+		float contentHeight() { return mObj->contentHeight; };
 
 	protected:
 		
@@ -66,7 +66,7 @@ namespace cinder { namespace qtime {
 			gl::GlslProgRef		mDefaultShader;
 			static gl::GlslProgRef	sHapQShader;
 			std::once_flag			mHapQOnceFlag;
-			float ww, hh;
+			float contentWidth, contentHeight;
 		};
 		std::unique_ptr<Obj>		mObj;
 		virtual MovieBase::Obj*		getObj() const { return mObj.get(); }
